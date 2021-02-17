@@ -1,0 +1,17 @@
+{
+  "name": "chess-scrapper",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Scrapper for chess.com lessons",
+  "main": "index.js",
+  "dependencies": {
+    "node-fetch": "^2.6.1",
+    "node-html-parser": "^2.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
