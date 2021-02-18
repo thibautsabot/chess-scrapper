@@ -35,7 +35,8 @@ chapters.map(async (chapter) => {
       cleanedVideos.map(async (video) => {
         const fileName = `./${chapterFolder}/${video.name}.mp4`;
         if (!existsSync(fileName)) {
-          downloadFile(video.url, fileName);
+          console.log(`Donwloading ${fileName}...`)
+          await downloadFile(video.url, fileName);
         }
       })
     );
