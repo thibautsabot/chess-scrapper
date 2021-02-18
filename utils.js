@@ -1,3 +1,4 @@
+import { createWriteStream } from "fs";
 import fetch from "node-fetch";
 import { parse } from "node-html-parser";
 
@@ -18,4 +19,15 @@ const sanitizeText = (text) => {
     .trim();
 };
 
-export { getHtmlFromUrl, sanitizeText };
+const downloadFile = async (url, path) => {
+  const res = await fetch(url);
+  const fileStream = createWriteStream(path);
+
+  await new Promise((resolve, reject) => {
+    res.body.pipe(fileStream);
+    res.body.on("error", reject);
+    fileStream.on("finish", resolve);
+  });
+};
+
+export { getHtmlFromUrl, sanitizeText, downloadFile };
