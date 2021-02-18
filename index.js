@@ -10,9 +10,13 @@ chapters.map(async (chapter) => {
   const videos = await Promise.all(lessons.map(async (lesson) => {
     const videoUrl = await getVideoFromLesson(lesson)
 
-    return { url: videoUrl, name: lesson.title }
+    return videoUrl?.includes('http') ? { url: videoUrl, name: lesson.title } : undefined
   }))
 
-  console.log(chapter.title)
-  console.log(videos)
+  // some lessons don't have videos but only interactive gameplay. We need to skip them.
+  const cleanedVideos = videos.filter((video) => !!video)
+  if (cleanedVideos.length > 0) {
+    console.log(chapter.title)
+    console.log(cleanedVideos)
+  }
 })
